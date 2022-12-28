@@ -1,8 +1,16 @@
-**Capstone Project**
----
-**Download the required dataset from**
-</break>
-- https://www.kaggle.com/datasets/tmdb/tmdb-movie-metadata?select=tmdb_5000_movies.csv
-- https://www.kaggle.com/datasets/tmdb/tmdb-movie-metadata?select=tmdb_5000_credits.csv 
+# MoodMusics
+MoodMusics is a music player which play songs based on your mood.<br />
 
-**And then create the model by executing notebook file**
+## General dependencies
+django==4.0.1 <br />
+keras==2.7.0  <br />
+numpy==1.22.0 <br />
+opencv-python-headless==4.5.5.62 <br />
+tensorflow==2.7.0 <br />
+whitenoise==5.3.0 <br />
+Pillow==9.0.0 <br />
+
+## Things you need to install to set up the project locally
+
+1. Python3
+2. Django
