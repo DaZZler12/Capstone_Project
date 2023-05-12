@@ -5,7 +5,7 @@ from PIL import Image
 import cv2
 import numpy as np
 from keras.models import load_model
-from keras import backend as K
+from keras import backend as K			
 import numpy as np
 from django.http import HttpResponse
 
@@ -21,10 +21,10 @@ def get_label(argument):
     labels = {0:'Angry', 1:'Disgust', 2:'Fear', 3:'Happy', 4:'Sad' , 5:'Surprise', 6:'Neutral'}
     return(labels.get(argument, "Invalid emotion"))
 
-# get all songs of the mood passed
+# get all songs of the mood passed	
 def get_songs(mood):
 	all_songs = Song.objects.all()
-	
+
 	mood_songs = []
 	for song in all_songs:
 		if song.mood == mood:
@@ -33,7 +33,7 @@ def get_songs(mood):
 
 	# print(mood_songs)
 
-	return mood_songs
+	return mood_songs 
 
 def detect(request):
 	# print("running it\n")
@@ -55,7 +55,7 @@ def detect(request):
 
 	img = np.array(Image.open(image_data))
 
-	#Converting to grayscale
+	#Converting to grayscale 
 	gray = cv2.cvtColor(img, cv2.COLOR_BGR2GRAY)
 
 	#Detecting faces
@@ -72,14 +72,12 @@ def detect(request):
 	#Resizing image to required size and processing
 	test_image = cv2.resize(crop_img, (64,64))
 	test_image = np.array(test_image)
-	gray = cv2.cvtColor(test_image, cv2.COLOR_BGR2GRAY)
-
-	#scale pixels values to lie between 0 and 1 because we did same to our train and test set
+	gray = cv2.cvtColor(test_image, cv2.COLOR_BGR2GRAY) 
+	#scale pixels values to lie between 0 and 1 because we did same to our train and test set (0 & 1)
 	gray = gray/255
-
-	#reshaping image (-1 is used to automatically fit an integer at it's place to match dimension of original image)
+	#reshaping image (-1 i	s used to automatically fit an integer at it's place to match dimension of original image)
 	gray = gray.reshape(-1, 64,64, 1)
-
+	
 	res = my_model.predict(gray)
 
 	#argmax returns index of max value
